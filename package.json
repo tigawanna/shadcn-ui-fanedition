@@ -67,7 +67,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tigawanna/shadcn-ui-helpers.git"
+    "url": "https://github.com/tigawanna/shadcn-ui-helpers.git"
   },
   "keywords": [
     "shadcn/ui"
