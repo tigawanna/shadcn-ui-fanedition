@@ -1,12 +1,12 @@
 {
-  "name": "ui",
+  "name": "shad-ui-helpers",
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
   "type": "module",
   "author": {
-    "name": "shadcn",
-    "url": "https://twitter.com/shadcn"
+    "name": "tigawanna",
+    "url": "https://twitter.com/lettherebecode_"
   },
   "workspaces": [
     "apps/*",
