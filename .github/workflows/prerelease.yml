@@ -6,7 +6,7 @@ on:
   pull_request:
     types: [labeled]
     branches:
-      - main
+      - master
 jobs:
   prerelease:
     if: |
@@ -47,12 +47,12 @@ jobs:
 
       - name: get-npm-version
         id: package-version
-        uses: martinbeentjes/npm-get-version-action@main
+        uses: martinbeentjes/npm-get-version-action@master
         with:
           path: packages/cli
 
       - name: Upload packaged artifact
         uses: actions/upload-artifact@v2
         with:
-          name: npm-package-shadcn-ui@${{ steps.package-version.outputs.current-version }}-pr-${{ github.event.number }} # encode the PR number into the artifact name
+          name: npm-package-shadui-plus@${{ steps.package-version.outputs.current-version }}-pr-${{ github.event.number }} # encode the PR number into the artifact name
           path: packages/cli/dist/index.js

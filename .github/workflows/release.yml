@@ -1,11 +1,10 @@
-# Adapted from create-t3-app.
-
+#  adapted from shadcn/ui
 name: Release
 
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   release:
@@ -14,29 +13,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v2
 
-      - name: Use PNPM
+      - name: Setup Node.js and PNPM
         uses: pnpm/action-setup@v2.2.4
-
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3
         with:
-          node-version: 18
-          cache: "pnpm"
+          pnpm-version: "latest"
+          node-version: "14"
 
-      - name: Install NPM Dependencies
+      - name: Install Dependencies
         run: pnpm install
 
-      # - name: Check for errors
-      #   run: pnpm check
+      - name: Author Check
+        run: |
+          if [ "$(npm config get init.author.name)" != "tigawanna" ]; then
+            echo "Author name is incorrect, please run 'npm init' to update it"
+            exit 1
+          fi
 
       - name: Build the package
-        run: pnpm build:cli
+        run: pnpm build
 
       - name: Create Version PR or Publish to NPM
+        if: contains(github.event.head_commit.message, '🚀 autorelease')
         id: changesets
         uses: changesets/action@v1.4.1
         with:

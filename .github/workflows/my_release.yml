@@ -1,0 +1,48 @@
+# name: Auto Release on Master
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+
+#       - name: Setup Node.js and PNPM
+#         uses: pnpm/action-setup@v2.2.4
+#         with:
+#           pnpm-version: "latest"
+#           node-version: "14"
+
+#       - name: Install Dependencies
+#         run: pnpm install
+
+#       - name: Author Check
+#         run: |
+#           if [ "$(npm config get init.author.name)" != "Your Name" ]; then
+#             echo "Author name is incorrect, please run 'npm init' to update it"
+#             exit 1
+#           fi
+
+#       - name: Run Tests
+#         run: pnpm run test
+
+#       - name: Auto Release
+#         if: contains(github.event.head_commit.message, '🚀 autorelease') && github.event.repository.owner.login == 'yourusername'
+#         uses: mathieudutour/github-actions-auto-merge@v2.5.1
+#         with:
+#           commit-message: "chore(release): ${{ env.VERSION }}"
+#           github-token: ${{ secrets.GITHUB_TOKEN }}
+#           merge-method: squash
+#           delete-branch: true
+
+#       - name: Publish to npm
+#         if: contains(github.event.head_commit.message, '🚀 autorelease') && github.event.repository.owner.login == 'yourusername'
+#         run: pnpm publish --access public
+#         env:
+#           NPM_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
