@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - master
-    if: "contains(github.event.head_commit.message, '🚀')"
+
 
 jobs:
   release:
-    if: ${{ github.repository_owner == 'tigawanna' }}
+    if: ${{ github.repository_owner == 'tigawanna' && contains(github.event.head_commit.message, '🚀')}}
     name: Create a PR for release workflow
     runs-on: ubuntu-latest
     steps:
@@ -35,10 +35,7 @@ jobs:
       - name: Build the package
         run: pnpm build
 
-      - name: Add release tags
-        run: |
-          git tag -a v${{ env.VERSION }} -m "Release v${{ env.VERSION }}"
-          git push origin v${{ env.VERSION }}
+
 
       - name: Create Version PR or Publish to NPM
         id: changesets
