@@ -1,35 +1,50 @@
-name: Publish
+# Adapted from create-t3-app.
+
+name: Release
+
 on:
-  workflow_run:
-    workflows: ["CI"]
-    types:
-      - completed
   push:
     branches:
-      - "master"
-
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+      - master
 
 jobs:
-  publish:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+  release:
+    if: ${{ github.repository_owner == 'tigawanna' }}
+    name: Create a PR for release workflow
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - name: Checkout Repo
+        uses: actions/checkout@v3
         with:
-          version: 7
-      - uses: actions/setup-node@v3
+          fetch-depth: 0
+
+      - name: Use PNPM
+        uses: pnpm/action-setup@v2.2.4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18
           cache: "pnpm"
 
-      - run: pnpm install --frozen-lockfile
-      - name: Create Release Pull Request or Publish
+      - name: Install NPM Dependencies
+        run: pnpm install
+
+      # - name: Check for errors
+      #   run: pnpm check
+
+      - name: Build the package
+        run: pnpm build:cli
+
+      - name: Create Version PR or Publish to NPM
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@v1.4.1
         with:
-          publish: pnpm run release
+          commit: "chore(release): version packages"
+          title: "chore(release): version packages"
+          version: node .github/changeset-version.js
+          publish: npx changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+          NODE_ENV: "production"
