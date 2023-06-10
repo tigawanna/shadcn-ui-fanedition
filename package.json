@@ -1,0 +1,49 @@
+{
+  "name": "shadcn-ui-fe",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --no-cache --continue",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build --filter=docs^... --filter=storybook^... && turbo run lint && turbo run test && changeset publish",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "check": "manypkg check",
+    "ci:publish": "pnpm publish -r"
+  },
+  "dependencies": {
+    "@manypkg/cli": "latest",
+    "eslint": "^8.42.0",
+    "prettier": "^2.8.8",
+    "turbo": "^1.10.2"
+  },
+  "keywords": [
+    "shadcn/ui",
+    "tailwind",
+    "typescript",
+    "react",
+    "radix",
+    "nextjs",
+    "nextjs 13.4",
+    "fan-edition",
+    "shadcn-fe-components",
+    "shadcn-fe-cli"
+  ],
+  "prettier": {
+    "printWidth": 100,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "packageManager": "pnpm@7.15.0",
+  "devDependencies": {
+    "@changesets/cli": "^2.26.1",
+    "tsup": "^6.7.0",
+    "vite": "^4.3.9",
+    "vite-plugin-dts": "^2.3.0"
+  }
+}

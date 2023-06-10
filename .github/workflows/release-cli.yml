@@ -1,0 +1,44 @@
+name: Release CLI package
+on:
+  push:
+jobs:
+  build:
+    if: contains(github.event.head_commit.message, '🚀:cli')
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18]
+    steps:
+    - uses: actions/checkout@v3
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 7
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'pnpm'
+    - name: setup pnpm config
+      run: pnpm config set store-dir $PNPM_CACHE_FOLDER   
+    - name: Install dependencies
+      run: pnpm install 
+    - name: Setup npmrc
+      run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc 
+
+    - name: Build and Release CLI
+      if: contains(github.event.head_commit.message, '🚀:cli')
+      run: pnpm run build --filter shadcn-fe-cli
+
+    - name: create and publish versions
+      if: contains(github.event.head_commit.message, '🚀:cli')
+      uses: changesets/action@v1
+      with:
+        version: pnpm ci:version --filter shadcn-fe-cli
+        title: "chore(release): version packages"
+        commit: "chore(release): version packages"
+        publish: pnpm ci:publish --filter shadcn-fe-cli
+    env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     
+    
+
