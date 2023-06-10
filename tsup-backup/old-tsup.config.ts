@@ -20,6 +20,7 @@ export default defineConfig({
         'src/components/skeleton/index.ts',
         'src/components/slider/index.ts',
         'src/components/switch/index.ts'
+        
     ],
     // outExtension({ format,options }) {
     //     console.log("outExtension == ",options.name)
