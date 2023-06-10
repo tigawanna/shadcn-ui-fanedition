@@ -30,10 +30,10 @@ jobs:
     - name: create and publish versions
       uses: changesets/action@v1
       with:
-        version: pnpm ci:version --filter shadcn-fe-components
+        version: node .github/changeset-version.js
         title: "chore(release): version packages"
         commit: "chore(release): version packages"
-        publish: pnpm ci:publish --filter shadcn-fe-components
+        publish: pnpm ci:publish --filter shadcn-fe-componentss
     env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
