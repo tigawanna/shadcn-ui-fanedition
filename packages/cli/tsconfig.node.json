@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "composite": true,
+      "composite": true,
     "skipLibCheck": true,
+    "isolatedModules": false,
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true

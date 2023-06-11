@@ -3,7 +3,6 @@ on:
   push:
 jobs:
   build:
-    if: contains(github.event.head_commit.message, '🚀:cli')
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,10 +17,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
+        
     - name: setup pnpm config
-      run: pnpm config set store-dir $PNPM_CACHE_FOLDER   
+      run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+
     - name: Install dependencies
-      run: pnpm install 
+      run: pnpm install --filter shadcn-fe-cli
+
     - name: Setup npmrc
       run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc 
 
@@ -29,14 +31,9 @@ jobs:
       if: contains(github.event.head_commit.message, '🚀:cli')
       run: pnpm run build --filter shadcn-fe-cli
 
-    - name: create and publish versions
-      if: contains(github.event.head_commit.message, '🚀:cli')
-      uses: changesets/action@v1
-      with:
-        version: pnpm ci:version --filter shadcn-fe-cli
-        title: "chore(release): version packages"
-        commit: "chore(release): version packages"
-        publish: pnpm ci:publish --filter shadcn-fe-cli
+    - name: Relaese it CLI 
+      run: pnpm  release --ci --filter shadcn-fe-components
+
     env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      

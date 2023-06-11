@@ -3,7 +3,7 @@ on:
   push:
 jobs:
   build:
-    if: contains(github.event.head_commit.message, '🚀:ui')
+
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -19,21 +19,20 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
     - name: setup pnpm config
-      run: pnpm config set store-dir $PNPM_CACHE_FOLDER   
+      run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+
     - name: Install dependencies
-      run: pnpm install 
+      run: pnpm install --filter shadcn-fe-components
+
     - name: Setup npmrc
       run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc 
 
     - name: Build and Release UI
-      run: pnpm run build --filter shadcn-fe-components  
-    - name: create and publish versions
-      uses: changesets/action@v1
-      with:
-        version: node .github/changeset-version.js
-        title: "chore(release): version packages"
-        commit: "chore(release): version packages"
-        publish: pnpm ci:publish --filter shadcn-fe-componentss
+      run: pnpm run build --filter shadcn-fe-components
+
+    - name: Relaese UI it
+      run: pnpm  release --ci --filter shadcn-fe-components
+      
     env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
