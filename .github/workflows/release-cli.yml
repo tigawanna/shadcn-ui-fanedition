@@ -28,11 +28,10 @@ jobs:
       run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc 
 
     - name: Build and Release CLI
-      if: contains(github.event.head_commit.message, '🚀:cli')
       run: pnpm run build --filter shadcn-fe-cli
 
     - name: Relaese it CLI 
-      run: pnpm  release --ci --filter shadcn-fe-components
+      run: pnpm  release --ci --filter shadcn-fe-cli
 
     env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

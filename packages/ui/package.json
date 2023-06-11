@@ -160,6 +160,8 @@
   ],
   "scripts": {
     "build": "node scripts/tsup-build-stages.js",
+    "typecheck": "tsc --noEmit",
+    
     "dev:story": "concurrently \"tsup --watch\" \"storybook\"",
     "tsup": "tsup",
     "dev": "concurrently \"tsup --watch\" \"ladle serve\"",
@@ -170,8 +172,8 @@
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
 
-    "release": "release-it",
-    "ci:publish": "pnpm publish --no-git-checks --access public --tag next"
+    "release": "release-it"
+
   },
   "keywords": [
     "shadcn/ui",
