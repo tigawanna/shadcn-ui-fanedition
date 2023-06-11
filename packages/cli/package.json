@@ -1,6 +1,6 @@
 {
   "name": "shadcn-fe-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Add shadcn components to your apps.",
   "publishConfig": {
     "access": "public"
