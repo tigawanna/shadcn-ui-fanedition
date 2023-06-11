@@ -2,10 +2,10 @@
 
 import * as React from "react"
 import * as TogglePrimitive from "@radix-ui/react-toggle"
-import { ConfigVariants, cva, type VariantProps } from "class-variance-authority"
+import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/shadcn/lib/utils"
-import { ClassProp } from "@/shadcn/lib/clx-types"
+import { ClassProp, ConfigVariants } from "@/shadcn/lib/clx-types"
 
 type toggleVariants= (props?: ConfigVariants<{
   variant: {

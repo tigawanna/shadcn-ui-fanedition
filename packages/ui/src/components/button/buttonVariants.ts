@@ -1,5 +1,5 @@
-import { ClassProp } from "@/shadcn/lib/clx-types"
-import { ConfigVariants, cva } from "class-variance-authority"
+import { ClassProp, ConfigVariants } from "@/shadcn/lib/clx-types"
+import {  cva } from "class-variance-authority"
 
 const variants = {
     variant: {

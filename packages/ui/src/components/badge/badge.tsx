@@ -1,7 +1,7 @@
 import * as React from "react"
-import { ConfigVariants, cva, type VariantProps } from "class-variance-authority"
+import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/shadcn/lib/utils"
-import { ClassProp } from "@/shadcn/lib/clx-types";
+import { ClassProp, ConfigVariants } from "@/shadcn/lib/clx-types";
 
 type badgeVariants=(props?: ConfigVariants<{
   variant: {

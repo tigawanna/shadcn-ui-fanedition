@@ -2,11 +2,11 @@
 
 import * as React from "react"
 import * as SheetPrimitive from "@radix-ui/react-dialog"
-import { ConfigVariants, cva, type VariantProps } from "class-variance-authority"
+import {  cva, type VariantProps } from "class-variance-authority"
 import { X } from "lucide-react"
 
 import { cn } from "@/shadcn/lib/utils"
-import { ClassProp } from "@/shadcn/lib/clx-types"
+import { ClassProp, ConfigVariants } from "@/shadcn/lib/clx-types"
 
 const Sheet = SheetPrimitive.Root
 
