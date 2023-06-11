@@ -1,11 +1,9 @@
-import React from "react";
-import type { StoryDefault, Story } from "@ladle/react";
-import { } from "./command";
-import '../../tailwind.css'
+import React from 'react';
+import type { StoryDefault, Story } from '@ladle/react';
+import {} from './command';
+import '../../tailwind.css';
 
 export default {
-    title: "[command] primary",
+  title: '[command] primary',
 } satisfies StoryDefault;
-export const commandStory: Story = () => (
-    <>sample story</>
-);
+export const commandStory: Story = () => <>sample story</>;

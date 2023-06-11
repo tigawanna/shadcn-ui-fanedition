@@ -78,7 +78,7 @@ export const STYLES = `@tailwind base;
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-}`
+}`;
 
 export const UTILS = `import { ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
@@ -86,7 +86,7 @@ import { twMerge } from "tailwind-merge"
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
-`
+`;
 
 export const TAILWIND_CONFIG = `/** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -162,4 +162,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}`
+}`;

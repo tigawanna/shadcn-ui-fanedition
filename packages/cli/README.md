@@ -3,23 +3,29 @@
 ⚠ This is a mild fork of the OG shadcn-ui [shadcn/ui](https://github.com/shadcn/ui)
 
 extra features :
+
 - a shad.config.json to persist your path preferences.
-everything else works the same but the new command is 
+  everything else works the same but the new command is
+
 ```bash
 npx shadcn-fe-cli init
 pnpm dlx shadcn-fe-cli init
 ```
-> if you switch path preferences later make sure to manually move the lib/util file or run 
+
+> if you switch path preferences later make sure to manually move the lib/util file or run
+
 ```bash
 npx shadcn-fe-cli init
-``` 
+```
+
 again
-- install all components by passing in `-A` option 
+
+- install all components by passing in `-A` option
+
 ```bash
 npx shadcn-fe-cli add -A
 pnpm shadcn-fe-cli add -A
 ```
-
 
 A CLI for adding components to your project.
 
@@ -42,12 +48,13 @@ The `add` command adds a component to your project and installs all required dep
 ```bash
 npx shadcn-fe-cli add [component]
 ```
-or install all components by passing in `-A` option 
+
+or install all components by passing in `-A` option
+
 ```bash
 npx shadcn-fe-cli add -A
 pnpm shadcn-fe-cli add -A
 ```
-
 
 ### Example
 
