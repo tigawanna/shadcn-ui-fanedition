@@ -20,7 +20,7 @@
 
   },
   "npm": {
-    "publish": false,
+    "publish":true,
     "publishPath": ".",
     "publishArgs": [],
     "tag": null,
