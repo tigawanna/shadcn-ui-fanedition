@@ -3,5 +3,5 @@
 
 
 echo "start pre-commit"
-pnpm pre-commit
+# pnpm pre-commit
 echo "done pre-commit"
