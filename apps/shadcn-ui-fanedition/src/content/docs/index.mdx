@@ -18,6 +18,7 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 import { Info } from "../../components/info.tsx"
+import { Theming } from "../../components/Theming.tsx"
 
 ## Added features include
 
@@ -48,4 +49,4 @@ import { Info } from "../../components/info.tsx"
 </CardGrid>
 
 
-<Info/>
+<Theming client:only="react"/>
