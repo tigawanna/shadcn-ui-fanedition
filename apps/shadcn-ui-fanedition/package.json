@@ -1,0 +1,19 @@
+{
+  "name": "shadcn-ui-fanedition",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.1.0",
+    "astro": "^2.5.0"
+  },
+  "devDependencies": {
+    "execa": "^7.0.0"
+  }
+}
