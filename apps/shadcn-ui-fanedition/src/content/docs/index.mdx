@@ -17,6 +17,7 @@ hero:
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Info } from "../../components/info.tsx"
 
 ## Added features include
 
@@ -35,6 +36,7 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
     ```sh
     pnpm add shadcn-fe-cli
     ```
+    <button class="bg-red-300 h-56">hello click me </button>
  </Card>
 
   {/* <Card title="Configure your site" icon="setting">
@@ -44,3 +46,6 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
     Learn more in [the Starlight Docs](https://starlight.astro.build/).
   </Card> */}
 </CardGrid>
+
+
+<Info/>
