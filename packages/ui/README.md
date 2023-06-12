@@ -52,6 +52,4 @@ or import individual components for smaller bundles sizes
 import { Button } from 'shadcn-fe-ui/button';
 ```
 
-## helpful references
 
-[relase-it + github actions setup video](https://www.youtube.com/watch?v=7pBcuT7j_A0)
