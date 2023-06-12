@@ -23,6 +23,7 @@
     "tailwindcss": "^3.3.2"
   },
   "devDependencies": {
-    "execa": "^7.0.0"
+    "execa": "^7.0.0",
+    "tailwindcss-animate": "^1.0.5"
   }
 }
