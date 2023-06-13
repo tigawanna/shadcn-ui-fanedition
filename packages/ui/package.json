@@ -7,6 +7,16 @@
     "node": ">=17.x",
     "npm": ">=8.x <9"
   },
+    "author": {
+      "name": "tigawanna",
+      "url": "https://twitter.com/lettherebecode_"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/tigawanna/shadcn-ui-fanedition",
+      "directory": "packages/ui"
+    },
+    "license": "ISC",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -179,10 +189,9 @@
     "react",
     "radix",
     "fan-edition",
-    "shadcn-fe-components"
+    "shadcn-fe-ui"
   ],
-  "author": "tigawanna",
-  "license": "ISC",
+
   "devDependencies": {
     "@ladle/react": "^2.14.0",
     "@radix-ui/react-toast": "^1.1.4",
