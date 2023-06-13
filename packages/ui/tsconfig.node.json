@@ -10,7 +10,6 @@
     "paths": {
       "@/*": ["./src/*"]
     }
-  },
-  "include": ["vite.config.ts","./scripts"],
-  "exclude": ["src/shadcn/ui"]
+  }
+
 }

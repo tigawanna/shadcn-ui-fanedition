@@ -7,6 +7,7 @@ export default defineConfig({
   treeshake: true,
   splitting: true,
   clean: true,
+  outDir:"dist",
   external: ['react', 'react-dom'],
   entry: ['src/index.ts', 'src/components/**/index.ts'],
   format: ['esm'],
