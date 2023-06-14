@@ -206,7 +206,7 @@ export default defineConfig({
 > the [`tsup config`](https://tsup.egoist.dev/#using-custom-configuration) can also be defined in the `package.json`
 
 Since it's a simple package only exports one file , having a single entry point is just fine . after build you'll have a `dist` folder
-![tailwind plugin files`](https://github.com/tigawanna/shadcn-ui-fanedition/blob/master/apps/shadcn-ui-fanedition/src/assets/tw-dist.png)
+![tailwind plugin files`](https://github.com/tigawanna/shadcn-ui-fanedition/raw/master/apps/shadcn-ui-fanedition/src/assets/tw-dist.png)
 
 - `index.js` has the actual code
 - `index.d.ts` has the typescript types 
@@ -253,7 +253,7 @@ plugins: [
 
 This one is also similar to the first but has more files which all get imported into the entry file 
 
-![CLI project structure](https://github.com/tigawanna/shadcn-ui-fanedition/blob/master/apps/shadcn-ui-fanedition/src/assets/dist-cli.png)
+![CLI project structure](https://github.com/tigawanna/shadcn-ui-fanedition/raw/master/apps/shadcn-ui-fanedition/src/assets/dist-cli.png)
 
 and then we declare our main and `dts` in the `package.json`
 
@@ -270,7 +270,7 @@ The `bin` field in the `package.json` file is used to specify the location of ex
 
 
 
-### Project #: [`shadcn/ui` components on NPM](https://github.com/tigawanna/shadcn-ui-fanedition/tree/master/packages/ui)
+### Project 3: [`shadcn/ui` components on NPM](https://github.com/tigawanna/shadcn-ui-fanedition/tree/master/packages/ui)
 
 In this project I built the [`shadcn/ui` components](https://ui.shadcn.com/) into an installable NPM package
 
