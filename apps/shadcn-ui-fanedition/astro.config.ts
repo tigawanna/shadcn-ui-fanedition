@@ -7,7 +7,7 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   integrations: [starlight({
-    title: 'ShadcnUI FE ',
+    title: 'shadcnui-fe',
     social: {
       github: 'https://github.com/tigawanna/shadcn-ui-fanedition'
     },
