@@ -29,16 +29,10 @@ export async function buildAllStages() {
 
     const root_file = glob.sync('src/index.ts');
     const files = glob.sync('src/components/**/index.ts');
-    console.log("COMPONENT COUNT== ", files.length);
     const chunkSize = 3;
     const chunks = _.chunk(files, chunkSize);
 
-    // console.log("root files ", root_file);
-    // console.log("files chunks", chunks);
-    //  test chunks
-    //  await buildStage({ clean: false, entry: chunks[chunks.length - 1] });
-    
-     for await (const [index, chunk] of chunks.entries()) {
+        for await (const [index, chunk] of chunks.entries()) {
       console.log('🚀 ~ chnk === ', chunk);
         await buildStage({ clean:index===0, entry: chunk });
     }
