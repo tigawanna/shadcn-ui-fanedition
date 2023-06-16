@@ -33,6 +33,7 @@ const exports = {
   '.': {
     import: './dist/index.js',
     types: './dist/index.d.ts',
+    require: './dist/index.cjs',
   },
 };
 
@@ -42,12 +43,14 @@ components.forEach((component) => {
 
   exports[`./${component}`] = {
     import: `${componentsDir}/${component}/index.js`,
+    require: `${componentsDir}/${component}/index.cjs`,
     types: `${componentsDir}/${component}/index.d.ts`,
   };
 });
 
 // Update the package.json file
 const packageJsonPath = './package.json';
-const packageJson = JSON.parse(fs.readFileSync(packageJsonPath));
+// @ts-expect-error
+const packageJson = JSON.parse(fs.readFileSync(packageJsonPath) );
 packageJson.exports = exports;
 fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));

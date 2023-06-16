@@ -7,16 +7,21 @@ async function buildStage({ clean, entry }) {
     
     try {
         await build({
-            dts: true,
-            minify: true,
-            sourcemap: true,
-            treeshake: true,
-            // splitting: true,
-            outDir: 'dist',
-            clean,
-            entry,
-            external: ['react', 'react-dom'],
-            format: ['esm'],
+          dts: true,
+          minify: true,
+          sourcemap: true,
+        //   treeshake: true,
+          // splitting: true,
+          outDir: 'dist',
+          clean,
+          entry,
+          external: ['react', 'react-dom'],
+          format: ['esm', 'cjs'],
+        //   outExtension({ format }) {
+        //     return {
+        //       js: `.${format}.js`,
+        //     };
+        //   },
         });
     } catch (error) {
         console.log("🚀 ~ error while building entries :", entry);
@@ -31,8 +36,9 @@ export async function buildAllStages() {
     const files = glob.sync('src/components/**/index.ts');
     const chunkSize = 3;
     const chunks = _.chunk(files, chunkSize);
+    // await buildStage({ clean:true, entry: chunks[0] });
 
-        for await (const [index, chunk] of chunks.entries()) {
+    for await (const [index, chunk] of chunks.entries()) {
       console.log('🚀 ~ chnk === ', chunk);
         await buildStage({ clean:index===0, entry: chunk });
     }

@@ -9,6 +9,10 @@ export default defineConfig({
   clean: true,
   outDir:"dist",
   external: ['react', 'react-dom'],
-  entry: ['src/index.ts', 'src/components/**/index.ts'],
+  entry: ['src/index.ts', 
+  'src/components/button/index.ts',
+  'src/components/sheet/index.ts',
+
+],
   format: ['esm'],
 });

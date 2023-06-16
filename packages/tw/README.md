@@ -1,13 +1,13 @@
-# shadcn-fe-tw
+# `shadcn-fe-tw`
 
-A tailwind plugin for shadcn/ui project that houses all the default tailwind configs for shadcn/ui
+A tailwind plugin for `shadcn/ui` project that houses all the default tailwind configs for `shadcn/ui`
 
 ## installation
 
 ```bash
- npm i shadcn-fe-tw
- yarn add shadcn-fe-tw
- pnpm add shadcn-fe-tw
+ npm i shadcn-fe-tw tailwindcss-animate
+ yarn add shadcn-fe-tw tailwindcss-animate
+ pnpm add shadcn-fe-tw tailwindcss-animate
 ```
 
 and add it into your `tailwind.config`
