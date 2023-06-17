@@ -31,9 +31,9 @@ const components = fs
 // Generate the exports object
 const exports = {
   '.': {
-    import: './dist/index.js',
+    import: './dist/index.mjs',
     types: './dist/index.d.ts',
-    require: './dist/index.cjs',
+    require: './dist/index.js',
   },
 };
 
@@ -42,8 +42,8 @@ components.forEach((component) => {
     // console.log('component ', component);
 
   exports[`./${component}`] = {
-    import: `${componentsDir}/${component}/index.js`,
-    require: `${componentsDir}/${component}/index.cjs`,
+    import: `${componentsDir}/${component}/index.mjs`,
+    require: `${componentsDir}/${component}/index.js`,
     types: `${componentsDir}/${component}/index.d.ts`,
   };
 });
