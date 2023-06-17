@@ -23,10 +23,10 @@ export default defineConfig({
         label: 'CLI',
         link: '/guides/cli/'
       },
-      {
-        label: 'Components',
-        link: '/guides/ui/'
-      },
+      // {
+      //   label: 'Components',
+      //   link: '/guides/ui/'
+      // },
       {
         label: 'Color tool',
         link: '/guides/color/'

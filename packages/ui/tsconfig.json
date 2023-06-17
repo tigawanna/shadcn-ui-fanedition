@@ -6,7 +6,7 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "nodenext",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": false,
@@ -18,13 +18,12 @@
     // "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
 
 
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src","./scripts/tsup-build-stages"],
-  "exclude": ["src/shadcn/ui"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src"],
 }

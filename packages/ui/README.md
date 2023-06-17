@@ -251,7 +251,9 @@ or import individual components for smaller bundles sizes
 import { Button } from 'shadcn-fe-ui/button';
 ```
 
-⚠⚠ Usage with `Nextjs` seems not to support type-checking for the multiple entry points unless if this is set in the `tsconfig.json` 
+⚠⚠ Usage with multiple entry points is still a work in progress
+
+⚠⚠ Usage with multiple entry points seems not to support type-checking for the multiple entry points unless if this is set in the `tsconfig.json` 
 ```json
 {
   "compilerOptions":{

@@ -34,6 +34,7 @@ const exports = {
     import: './dist/index.mjs',
     types: './dist/index.d.ts',
     require: './dist/index.js',
+    default: './dist/index.js'
   },
 };
 
@@ -45,6 +46,7 @@ components.forEach((component) => {
     import: `${componentsDir}/${component}/index.mjs`,
     require: `${componentsDir}/${component}/index.js`,
     types: `${componentsDir}/${component}/index.d.ts`,
+    default: `${componentsDir}/${component}/index.mjs`
   };
 });
 

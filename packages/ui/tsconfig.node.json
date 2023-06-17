@@ -5,7 +5,7 @@
     "isolatedModules": false,
     "skipLibCheck": true,
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "nodenext",
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": ["./src/*"]
