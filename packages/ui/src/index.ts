@@ -1,3 +1,4 @@
+"use client"
 export * from './components/accordion';
 export * from './components/alert';
 export * from './components/alert-dialog';
