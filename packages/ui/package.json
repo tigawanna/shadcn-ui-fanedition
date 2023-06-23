@@ -1,6 +1,6 @@
 {
   "name": "shadcn-fe-ui",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "shadcn/ui instalabble components",
   "engines": {
     "node": ">=17.x",
