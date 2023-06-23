@@ -7,7 +7,7 @@
     "node": ">=17.x",
     "npm": ">=8.x <9"
   },
-    "author": {
+  "author": {
     "name": "tigawanna",
     "url": "https://twitter.com/lettherebecode_"
   },
@@ -18,14 +18,13 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
-    "dev":"tsup --watch",
+    "dev": "tsup src/index.ts --watch",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
     "release": "release-it"
@@ -38,15 +37,16 @@
     "fan-edition",
     "shadcn-fe-tw"
   ],
- 
   "license": "ISC",
   "devDependencies": {
-  "release-it": "^15.11.0",
-    "tsup": "^6.7.0",
+    "release-it": "^15.11.0",
     "typescript": "^5.1.3"
   },
-  
   "peerDependencies": {
     "tailwindcss": ">=3.X"
-    }
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "tsup": "^7.0.0"
+  }
 }
