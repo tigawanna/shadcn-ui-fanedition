@@ -34,7 +34,11 @@ export const rawConfigSchema = z
       components: z.string(),
       utils: z.string(),
     }),
-    baseDir: z.string(),
+    // paths: z.object({
+    //   base: z.string(),
+    //   components: z.string(),
+    //   utils: z.string(),
+    // })
   })
   .strict()
 
@@ -46,7 +50,9 @@ export const configSchema = rawConfigSchema.extend({
     tailwindCss: z.string(),
     utils: z.string(),
     components: z.string(),
-    baseDir: z.string(),
+    // baseDir: z.string(),
+    // componentsDir: z.string(),
+    // utilsDir: z.string(),
   }),
 })
 
@@ -81,7 +87,9 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
       tailwindCss: path.resolve(cwd, config.tailwind.css),
       utils: await resolveImport(config.aliases["utils"], tsConfig),
       components: await resolveImport(config.aliases["components"], tsConfig),
-      baseDir: path.resolve(cwd, config.baseDir)
+      // baseDir: path.resolve(cwd, config.paths.base),
+      // componentsDir: path.resolve(cwd, config.paths.components),
+      // utilsDir: path.resolve(cwd, config.paths.utils),
       },
   })
 }

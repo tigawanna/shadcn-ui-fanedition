@@ -130,12 +130,12 @@ export async function promptForConfig(
       message: `Where is your ${highlight("tailwind.config.js")} located?`,
       initial: defaultConfig?.tailwind.config ?? DEFAULT_TAILWIND_CONFIG,
     },
-    {
-      type: "text",
-      name: "baseDir",
-      message: `Specify base directory ${highlight("base_directory")}:`,
-      initial: defaultConfig?.baseDir ?? DEFAULT_BASE_DIR,
-    },
+    // {
+    //   type: "text",
+    //   name: "baseDir",
+    //   message: `Specify base directory ${highlight("base_directory")}:`,
+    //   initial: defaultConfig?.paths.base ?? DEFAULT_BASE_DIR,
+    // },
     {
       type: "text",
       name: "components",
@@ -174,7 +174,11 @@ export async function promptForConfig(
       utils: options.utils,
       components: options.components,
     },
-    baseDir: options.baseDir,
+    // paths:{
+    //   base: options.baseDir,
+    //   components:options.baseDir+"/ui",
+    //   utils:options.baseDir+"/lib",
+    // },
   })
 
   if (!skip) {
@@ -206,21 +210,26 @@ export async function runInit(cwd: string, config: Config) {
   const spinner = ora(`Initializing project...`)?.start()
 
   console.log("config . resolved paths === ", config.resolvedPaths)
+
+ 
   // Ensure all resolved paths directories exist.
   for (const [key, resolvedPath] of Object.entries(config.resolvedPaths)) {
     // Determine if the path is a file or directory.
-    // TODO: is there a better way to do this?
+    // TODO: is there a better way to do this?  
+
     let dirname = path.extname(resolvedPath)? path.dirname(resolvedPath): resolvedPath
-    console.log("Dir name  === ",dirname)
+
     // If the utils alias is set to something like "@/lib/utils",
     // assume this is a file and remove the "utils" file name.
     // TODO: In future releases we should add support for individual utils.
+
     if (key === "utils" && resolvedPath.endsWith("/utils")) {
       // Remove /utils at the end.
       dirname = dirname.replace(/\/utils$/, "")
     }
 
-    if (!existsSync(dirname)) {
+
+    if (!existsSync(dirname) ) {
       await fs.mkdir(dirname, { recursive: true })
     }
   }
