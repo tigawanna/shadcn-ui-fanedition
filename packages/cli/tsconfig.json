@@ -5,7 +5,7 @@
     "isolatedModules": false,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]
     }
   },
   "include": ["src/**/*.ts"],
