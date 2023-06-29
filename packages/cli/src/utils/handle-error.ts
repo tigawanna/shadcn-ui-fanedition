@@ -11,6 +11,7 @@ export function handleError(error: unknown) {
     process.exit(1)
   }
 
+  logger.error(JSON.stringify(error))
   logger.error("Something went wrong. Please try again.")
   process.exit(1)
 }

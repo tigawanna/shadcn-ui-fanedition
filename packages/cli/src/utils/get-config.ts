@@ -5,7 +5,7 @@ import { loadConfig } from "tsconfig-paths"
 import * as z from "zod"
 
 export const DEFAULT_STYLE = "default"
-export const DEFAULT_COMPONENTS = "@/shadcn/ui"
+export const DEFAULT_COMPONENTS = "@/shadcn"
 export const DEFAULT_UTILS = "@/shadcn/lib/utils"
 export const DEFAULT_TAILWIND_CSS = "src/app/globals.css"
 export const DEFAULT_TAILWIND_CONFIG = "tailwind.config.js"
