@@ -122,6 +122,7 @@ export async function getItemTargetPath(
   if (override && item.type !== "components:ui") {
     return override
   }
+  //  if used old init and config
   if(config&&"resolvedPaths"in config) {
     const [parent, type] = item.type.split(":")
     if (!(parent in config.resolvedPaths)) {
@@ -133,15 +134,13 @@ export async function getItemTargetPath(
       type
     )
   }
+  //  if used new config
   const [parent, type] = item.type.split(":")
   if (!(parent in config.paths)) {
     return null
   }
-
-  return path.join(
-    config.paths[parent as keyof typeof config.paths],
-    type
-  )
+   
+  return config.paths[parent as keyof typeof config.paths]
 
 
 }

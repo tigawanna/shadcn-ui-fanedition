@@ -6,7 +6,7 @@ import path from "path"
 import { z } from "zod"
 import { handleError } from "@/src/utils/handle-error"
 import { getShadConfig } from "../utils/shad-config"
-import { promptForConfig } from "../utils/init/config-propmt"
+import { promptForConfig } from "../utils/init/config-prompt"
 import { saveConfig } from "../utils/init/save-configs"
 
 const initOptionsSchema = z.object({

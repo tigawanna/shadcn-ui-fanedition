@@ -20,6 +20,7 @@ export const shadConfigSchema = z.object({
         components: z.string(),
         utils: z.string(),
     }),
+    components: z.array(z.string()).optional(),
     paths: z.object({
         base: z.string(),
         components: z.string(),

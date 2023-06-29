@@ -1,9 +1,7 @@
-import { execa } from 'execa';
 import { existsSync, promises as fs } from 'fs';
 import { ShadConfig } from '../shad-config';
 import ora from 'ora';
 import path from 'path';
-import { getPackageManager } from '@/src/utils/get-package-manager';
 import { getRegistryBaseColor } from '@/src/utils/registry';
 import * as templates from '@/src/utils/templates';
 
@@ -29,7 +27,7 @@ export async function saveConfig(cwd: string, config: ShadConfig) {
   const utils_path = path.resolve(cwd, config.paths.utils);
   const styles_path = path.resolve(cwd, config.paths.styles);
   const tailwind_config_path = path.resolve(cwd, config.tailwind.config);
-  const postcss_config_path = path.resolve(cwd,"/postcss.config.js");
+  const postcss_config_path = path.resolve(cwd,"postcss.config.js");
   //  make the directories
   for (const [key, resolvedPath] of Object.entries(config.paths)) {
     // Determine if the path is a file or directory.
@@ -74,26 +72,26 @@ export async function saveConfig(cwd: string, config: ShadConfig) {
 
   spinner?.succeed();
   // Install dependencies.
-  const dependenciesSpinner = ora(`Installing dependencies...`)?.start();
-  const packageManager = await getPackageManager(cwd);
+  // const dependenciesSpinner = ora(`Installing dependencies...`)?.start();
+  // const packageManager = await getPackageManager(cwd);
 
-  // TODO: add support for other icon libraries.
-  const deps = [
-    ...PROJECT_DEPENDENCIES,
-    config.style === 'new-york' ? '@radix-ui/react-icons' : 'lucide-react',
-  ];
+  // // TODO: add support for other icon libraries.
+  // const deps = [
+  //   ...PROJECT_DEPENDENCIES,
+  //   config.style === 'new-york' ? '@radix-ui/react-icons' : 'lucide-react',
+  // ];
 
-  await execa(packageManager, [packageManager === 'npm' ? 'install' : 'add', ...deps], {
-    cwd,
-  });
-  await execa(
-    packageManager,
-    [packageManager === 'npm' ? 'install' : 'add', '-D', ...PROJECT_DEV_DEPENDENCIES],
-    {
-      cwd,
-    }
-  );
-  dependenciesSpinner?.succeed();
+  // await execa(packageManager, [packageManager === 'npm' ? 'install' : 'add', ...deps], {
+  //   cwd,
+  // });
+  // await execa(
+  //   packageManager,
+  //   [packageManager === 'npm' ? 'install' : 'add', '-D', ...PROJECT_DEV_DEPENDENCIES],
+  //   {
+  //     cwd,
+  //   }
+  // );
+  // dependenciesSpinner?.succeed();
 
   const postcssInitSpinner = ora(`Initializing postcss...`)?.start();
   await fs.writeFile(postcss_config_path, templates.POSTCSS_CONFIG, 'utf8');

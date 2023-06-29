@@ -6,6 +6,7 @@ import { Command } from "commander"
 
 import { getPackageInfo } from "./utils/get-package-info"
 import { init } from "./custom/commands/init"
+import { info } from "./custom/commands/info"
 
 process.on("SIGINT", () => process.exit(0))
 process.on("SIGTERM", () => process.exit(0))
@@ -22,7 +23,7 @@ async function main() {
       "display the version number"
     )
 
-  program.addCommand(init).addCommand(add).addCommand(diff).addCommand(oldinit)
+  program.addCommand(init).addCommand(add).addCommand(diff).addCommand(oldinit).addCommand(info)
 
   program.parse()
 }
