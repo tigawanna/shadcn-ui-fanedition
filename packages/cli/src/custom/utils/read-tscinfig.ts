@@ -3,9 +3,7 @@ import { DEFAULT_TSCONFIG_PATH, TSCONFIG_PATH } from './consts';
 import { safeJSONparse } from './safe_json_parse';
 import { logger } from '@/src/utils/logger';
 import { Tsconfig } from "tsconfig-type";
-type PathAlias = {
-    [key: string]: string
-}
+
 export async function resolveTsconfigPaths(){
 
     try {
