@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "after:bump": "npx auto-changelog --append-git-log packages/cli -p"
+    "after:bump": "npx auto-changelog -p"
   },
   "git": {
   "requireCleanWorkingDir": true,

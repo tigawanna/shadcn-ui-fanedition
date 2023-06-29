@@ -19,6 +19,9 @@ const PROJECT_DEV_DEPENDENCIES = [
   'tailwind-scrollbar',
   '@tailwindcss/container-queries',
   '@tailwindcss/typography',
+  "tailwindcss",
+  "postcss",
+  "autoprefixer"
 ];
 
 export async function saveConfig(cwd: string, config: ShadConfig) {
@@ -26,6 +29,7 @@ export async function saveConfig(cwd: string, config: ShadConfig) {
   const utils_path = path.resolve(cwd, config.paths.utils);
   const styles_path = path.resolve(cwd, config.paths.styles);
   const tailwind_config_path = path.resolve(cwd, config.tailwind.config);
+  const postcss_config_path = path.resolve(cwd,"/postcss.config.js");
   //  make the directories
   for (const [key, resolvedPath] of Object.entries(config.paths)) {
     // Determine if the path is a file or directory.
@@ -89,6 +93,10 @@ export async function saveConfig(cwd: string, config: ShadConfig) {
       cwd,
     }
   );
-
   dependenciesSpinner?.succeed();
+
+  const postcssInitSpinner = ora(`Initializing postcss...`)?.start();
+  await fs.writeFile(postcss_config_path, templates.POSTCSS_CONFIG, 'utf8');
+  postcssInitSpinner?.succeed();
+
 }
