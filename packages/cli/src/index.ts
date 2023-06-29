@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 import { add } from "@/src/commands/add"
 import { diff } from "@/src/commands/diff"
-import { init } from "@/src/commands/init"
+import { oldinit } from "@/src/commands/init"
 import { Command } from "commander"
 
 import { getPackageInfo } from "./utils/get-package-info"
-import { test } from "./custom/commands/init"
+import { init } from "./custom/commands/init"
 
 process.on("SIGINT", () => process.exit(0))
 process.on("SIGTERM", () => process.exit(0))
@@ -22,7 +22,7 @@ async function main() {
       "display the version number"
     )
 
-  program.addCommand(init).addCommand(add).addCommand(diff).addCommand(test)
+  program.addCommand(init).addCommand(add).addCommand(diff).addCommand(oldinit)
 
   program.parse()
 }

@@ -18,6 +18,7 @@ import { execa } from "execa"
 import ora from "ora"
 import prompts from "prompts"
 import * as z from "zod"
+import { getShadConfig } from "../custom/utils/shad-config"
 
 const addOptionsSchema = z.object({
   components: z.array(z.string()).optional(),
@@ -53,7 +54,7 @@ export const add = new Command()
         process.exit(1)
       }
 
-      const config = await getConfig(cwd)
+      const config = await getShadConfig(cwd)
       if (!config) {
         logger.warn(
           `Configuration is missing. Please run ${chalk.green(
@@ -109,8 +110,10 @@ export const add = new Command()
       }
 
       const spinner = ora(`Installing components...`).start()
+      
       for (const item of payload) {
         spinner.text = `Installing ${item.name}...`
+
         const targetDir = await getItemTargetPath(
           config,
           item,
@@ -170,6 +173,7 @@ export const add = new Command()
             }
           )
         }
+
       }
       spinner.succeed(`Done.`)
     } catch (error) {

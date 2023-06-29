@@ -8,11 +8,12 @@ import { transformImport } from "@/src/utils/transformers/transform-import"
 import { transformRsc } from "@/src/utils/transformers/transform-rsc"
 import { Project, ScriptKind, type SourceFile } from "ts-morph"
 import * as z from "zod"
+import { ShadConfig } from "@/src/custom/utils/shad-config"
 
 export type TransformOpts = {
   filename: string
   raw: string
-  config: Config
+  config: Config|ShadConfig
   baseColor?: z.infer<typeof registryBaseColorSchema>
 }
 

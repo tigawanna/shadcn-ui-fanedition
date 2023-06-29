@@ -10,6 +10,7 @@ import {
 import { HttpsProxyAgent } from "https-proxy-agent"
 import fetch from "node-fetch"
 import * as z from "zod"
+import { ShadConfig } from "@/src/custom/utils/shad-config"
 
 const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://ui.shadcn.com"
 const agent = process.env.https_proxy
@@ -113,7 +114,7 @@ export async function fetchTree(
 }
 
 export async function getItemTargetPath(
-  config: Config,
+  config: ShadConfig|Config,
   item: Pick<z.infer<typeof registryItemWithContentSchema>, "type">,
   override?: string
 ) {
@@ -121,16 +122,28 @@ export async function getItemTargetPath(
   if (override && item.type !== "components:ui") {
     return override
   }
+  if(config&&"resolvedPaths"in config) {
+    const [parent, type] = item.type.split(":")
+    if (!(parent in config.resolvedPaths)) {
+      return null
+    }
 
+    return path.join(
+      config.resolvedPaths[parent as keyof typeof config.resolvedPaths],
+      type
+    )
+  }
   const [parent, type] = item.type.split(":")
-  if (!(parent in config.resolvedPaths)) {
+  if (!(parent in config.paths)) {
     return null
   }
 
   return path.join(
-    config.resolvedPaths[parent as keyof typeof config.resolvedPaths],
+    config.paths[parent as keyof typeof config.paths],
     type
   )
+
+
 }
 
 async function fetchRegistry(paths: string[]) {

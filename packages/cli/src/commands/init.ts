@@ -40,8 +40,8 @@ const initOptionsSchema = z.object({
   yes: z.boolean(),
 })
 
-export const init = new Command()
-  .name("init")
+export const oldinit = new Command()
+  .name("old-init")
   .description("initialize your project and install dependencies")
   .option("-y, --yes", "skip confirmation prompt.", false)
   .option(
@@ -205,6 +205,7 @@ export async function promptForConfig(
 
   return await resolveConfigPaths(cwd, config)
 }
+
 
 export async function runInit(cwd: string, config: Config) {
   const spinner = ora(`Initializing project...`)?.start()

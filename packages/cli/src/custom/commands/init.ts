@@ -1,23 +1,23 @@
 import { Command } from "commander"
 import { logger } from "@/src/utils/logger"
 import chalk from "chalk"
-import { getConfig, resolveConfigPaths } from "@/src/utils/get-config"
 import { existsSync, promises as fs } from "fs"
 import path from "path"
 import { z } from "zod"
 import { handleError } from "@/src/utils/handle-error"
-import { resolveTsconfigPaths } from "../utils/read-tscinfig"
-
+import { getShadConfig } from "../utils/shad-config"
+import { promptForConfig } from "../utils/init/config-propmt"
+import { saveConfig } from "../utils/init/save-configs"
 
 const initOptionsSchema = z.object({
     cwd: z.string(),
     yes: z.boolean(),
 })
 
-export const test = new Command()
-    .name("test")
-    .command("test")
-    .description("test command")
+export const init = new Command()
+    .name("init")
+    .command("init")
+    .description("better init command")
     .option("-y, --yes", "skip confirmation prompt.", false)
     .option(
         "-c, --cwd <cwd>",
@@ -28,20 +28,19 @@ export const test = new Command()
         try {
             const options = initOptionsSchema.parse(opts)
             const cwd = path.resolve(options.cwd)
-            console.log("current working directory === ", cwd)
+     
             // Ensure target directory exists.
             if (!existsSync(cwd)) {
                 logger.error(`The path ${cwd} does not exist. Please try again.`)
                 process.exit(1)
             }
 
-            // Read config.
-            // const existingConfig = await getConfig(cwd)
-            // console.log("existing config === ", existingConfig)
-            // const config = await promptForConfig(cwd, existingConfig, options.yes)
-
-            const tsconfig = await resolveTsconfigPaths()
-            console.log("tsconfig === ", tsconfig)
+            //  read shadcn config
+            const shad_config = await getShadConfig(cwd)
+            // propmpt for config
+            const config = shad_config ?? await promptForConfig(cwd, shad_config)
+            // save config files to shadcn.config.json
+            const restults  = await saveConfig(cwd,config)
 
 
             logger.info("")
@@ -53,3 +52,9 @@ export const test = new Command()
             handleError(error)
         }
     })
+
+
+
+
+
+
