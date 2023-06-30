@@ -7,7 +7,9 @@ import { z } from "zod"
 import { handleError } from "@/src/utils/handle-error"
 import { getShadConfig } from "../utils/shad-config"
 import { promptForConfig } from "../utils/init/config-prompt"
-import { saveConfig } from "../utils/init/save-configs"
+import { saveComponentList } from "../utils/registry/save-component-list"
+import { readComponents } from "../utils/registry/read-components"
+import { installComponentsFromConfigList } from "../utils/registry/install-component-list"
 
 const initOptionsSchema = z.object({
     cwd: z.string(),
@@ -40,7 +42,18 @@ export const init = new Command()
             // propmpt for config
             const config = shad_config ?? await promptForConfig(cwd, shad_config)
             // save config files to shadcn.config.json
-            const restults  = await saveConfig(cwd,config)
+    
+            
+            if(config.components){
+                await installComponentsFromConfigList(cwd, config.components)
+                const component_list = await readComponents(cwd);
+                await saveComponentList(cwd, component_list ?? []);
+            }else{
+                const component_list = await readComponents(cwd);
+                await saveComponentList(cwd, component_list ?? []);
+            }
+    
+
 
 
             logger.info("")

@@ -19,8 +19,6 @@ import { getShadConfig } from './shad-config';
 import { existsSync, promises as fs } from 'fs';
 import { z } from 'zod';
 
-
-
 const addOptionsSchema = z.object({
   components: z.array(z.string()).optional(),
   yes: z.boolean(),
@@ -29,7 +27,8 @@ const addOptionsSchema = z.object({
   path: z.string().optional(),
 });
 
-export async function getComponents(components: string[], opts: any) {
+export async function getComponents(components: string[], opts: any, is_init: boolean = false) {
+  // console.log("components opts === ", components, opts);
   try {
     const options = addOptionsSchema.parse({
       components,
@@ -56,6 +55,7 @@ export async function getComponents(components: string[], opts: any) {
     let selectedComponents = options.components;
 
     const registryIndex = await getRegistryIndex();
+
     if (!options.components?.length) {
       const { components } = await prompts({
         type: 'multiselect',
@@ -122,7 +122,7 @@ export async function getComponents(components: string[], opts: any) {
       );
 
       if (existingComponent.length && !options.overwrite) {
-        if (selectedComponents.includes(item.name)) {
+        if (selectedComponents.includes(item.name) && !is_init) {
           logger.warn(
             `Component ${item.name} already exists. Use ${chalk.green('--overwrite')} to overwrite.`
           );
@@ -160,8 +160,8 @@ export async function getComponents(components: string[], opts: any) {
     }
 
     spinner.succeed(`Done.`);
+    logger.success('Components installed: ', selectedComponents);
     return selectedComponents;
-    
   } catch (error) {
     handleError(error);
   }

@@ -10,12 +10,13 @@ export async function saveComponentList(cwd: string,component_list?: string[]) {
             return
         }
         const config = await getShadConfig(cwd)
-        const components_path  = path.resolve(cwd,"shadcn.config.json" as string)
+        const config_path  = path.resolve(cwd,"shadcn.config.json" as string)
         if(config){
-            console.log("saving component list ",component_list)
+            // console.log("saving component list ",component_list)
             config["components"]= component_list
         }
-        await fs.writeFile(components_path, JSON.stringify(config, null, 2), 'utf8');
+        await fs.writeFile(config_path, JSON.stringify(config, null, 2), 'utf8');
+        return config
     } catch (error) {
         handleError(error);
     }

@@ -19,6 +19,8 @@ export const add = new Command()
   .option("-p, --path <path>", "the path to add the component to.")
   .action(
     async (components, opts) => {
+      // console.log("opts == ",opts)
+      // console.log("components === ",components)
     await  getComponents(components, opts)
     //  read saved components and save in shadcn.config.json
     const component_list = await readComponents(opts.cwd)
